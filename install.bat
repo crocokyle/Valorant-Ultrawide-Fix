@@ -1,4 +1,12 @@
+echo Creating install directory
+mkdir "%HOMEPATH%\Documents\ValorantUltrawideHack"
+
 @echo off
+set LOGFILE=%HOMEPATH%\Documents\ValorantUltrawideHack\install_log.log
+call :LOG > %LOGFILE%
+exit /B
+
+:LOG
 mode con: cols=220 lines=50
 color 09
 title Kyle's Valorant Ultrawide Patch Installer
@@ -7,8 +15,7 @@ echo .
 echo .
 echo Launching the big guns! - Getting your system information, graphics settings, and creating your custom Valorant profile...
 Powershell.exe -executionpolicy remotesigned -File SysSetup.ps1
-echo Creating install directory
-mkdir "%HOMEPATH%\Documents\ValorantUltrawideHack"
+
 echo Moving patch files to install directory...
 copy ValorantLauncher.bat "%HOMEPATH%\Documents\ValorantUltrawideHack\ValorantLauncher.bat
 copy GameUserSettingsSrc.ini "%HOMEPATH%\Documents\ValorantUltrawideHack\GameUserSettingsSrc.ini"
@@ -27,5 +34,4 @@ echo Please be patient. The splash screen will appear stretched because the game
 echo .
 echo To launch Valorant in Ultrawide resolution, please click the "Valorant Ultrawide Launcher" shortcut on your Desktop. 
 echo ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-pause
 del install.bat

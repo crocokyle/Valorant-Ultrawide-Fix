@@ -1,4 +1,9 @@
-﻿$SearchDir = $env:LOCALAPPDATA + '\VALORANT\Saved\Config'
+﻿$ErrorActionPreference="SilentlyContinue"
+Stop-Transcript | out-null
+$ErrorActionPreference = "Continue"
+Start-Transcript -path $env:HOMEPATH\Documents\ValorantUltrawideHack\SysSetup_log.log -append
+
+$SearchDir = $env:LOCALAPPDATA + '\VALORANT\Saved\Config'
 $TokenizedResults = gci -Recurse -Filter "GameUserSettings.ini" -File -Path $SearchDir -Force
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 $SrcPath = $ScriptDir + '\GameUserSettingsSrc.ini'
@@ -8,6 +13,10 @@ $ExistingSettings = $TokenizedResults.DirectoryName + '\GameUserSettings.ini'
 function WriteLauncher {
     $fName = $ScriptDir + '\ValorantLauncher.bat'
     New-Item $fName
+    'set LOGFILE=ValorantLauncher_log.log' | Out-File $fName -Append -encoding "UTF8"
+    'call :LOG > %LOGFILE%' | Out-File $fName -Append -encoding "UTF8"
+    'exit /B' | Out-File $fName -Append -encoding "UTF8"
+    ':LOG' | Out-File $fName -Append -encoding "UTF8"
     'echo Patching Valorant screen resolution...' | Out-File $fName -Append -encoding "UTF8"
     'copy ' + $TargetPath + ' ' + $TokenizedResults.DirectoryName + '\GameUserSettings.ini' | Out-File $fName -Append -encoding "UTF8"
     'echo Killing your Windows taskbar until game has closed...' | Out-File $fName -Append -encoding "UTF8"
@@ -82,3 +91,5 @@ Write-Host ""
 copy $SrcPath $TargetPath
 Write-Host "Creating your custom Valorant launch script..."
 WriteLauncher
+
+Stop-Transcript
