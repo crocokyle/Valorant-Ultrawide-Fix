@@ -23,5 +23,5 @@
     - `ValorantLauncher_log.log`
     
 3. If these logs do not provide you with enough information to solve your issue, please [create a new issue here.](https://github.com/crocokyle/Valorant-Ultrawide-Fix/issues)
-    - Make sure you include these log files when submitting
+    - Make sure you include **all three log files** when submitting
     - Be as specific as possible when explaining the issue. 
