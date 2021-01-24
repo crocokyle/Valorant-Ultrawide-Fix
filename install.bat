@@ -1,3 +1,5 @@
+del %HOMEPATH%\Documents\ValorantUltrawideHack\install_log.log
+
 echo Creating install directory
 mkdir "%HOMEPATH%\Documents\ValorantUltrawideHack"
 

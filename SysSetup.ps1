@@ -13,6 +13,7 @@ $ExistingSettings = $TokenizedResults.DirectoryName + '\GameUserSettings.ini'
 function WriteLauncher {
     $fName = $ScriptDir + '\ValorantLauncher.bat'
     New-Item $fName
+    'del ValorantLauncher_log.log' | Out-File $fName -Append -encoding "UTF8"
     'set LOGFILE=ValorantLauncher_log.log' | Out-File $fName -Append -encoding "UTF8"
     'call :LOG > %LOGFILE%' | Out-File $fName -Append -encoding "UTF8"
     'exit /B' | Out-File $fName -Append -encoding "UTF8"
