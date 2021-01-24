@@ -13,17 +13,17 @@ $ExistingSettings = $TokenizedResults.DirectoryName + '\GameUserSettings.ini'
 function WriteLauncher {
     $fName = $ScriptDir + '\ValorantLauncher.bat'
     New-Item $fName
-    ' '  | Out-File $fName -Append -encoding "UTF8"
-    'del ValorantLauncher_log.log' | Out-File $fName -Append -encoding "UTF8"
-    'set LOGFILE=ValorantLauncher_log.log' | Out-File $fName -Append -encoding "UTF8"
-    'call :LOG > %LOGFILE%' | Out-File $fName -Append -encoding "UTF8"
-    'exit /B' | Out-File $fName -Append -encoding "UTF8"
-    ':LOG' | Out-File $fName -Append -encoding "UTF8"
-    'echo Patching Valorant screen resolution...' | Out-File $fName -Append -encoding "UTF8"
-    'copy ' + $TargetPath + ' ' + $TokenizedResults.DirectoryName + '\GameUserSettings.ini' | Out-File $fName -Append -encoding "UTF8"
-    'echo Killing your Windows taskbar until game has closed...' | Out-File $fName -Append -encoding "UTF8"
-    'echo Launching Valorant in Ultrawide' | Out-File $fName -Append -encoding "UTF8"
-    '"C:\Riot Games\Riot Client\RiotClientServices.exe" --launch-product=valorant --launch-patchline=live' | Out-File $fName -Append -encoding "UTF8"
+    ' '  | Out-File $fName -Append -encoding "oem"
+    'del ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
+    'set LOGFILE=ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
+    'call :LOG > %LOGFILE%' | Out-File $fName -Append -encoding "oem"
+    'exit /B' | Out-File $fName -Append -encoding "oem"
+    ':LOG' | Out-File $fName -Append -encoding "oem"
+    'echo Patching Valorant screen resolution...' | Out-File $fName -Append -encoding "oem"
+    'copy ' + $TargetPath + ' ' + $TokenizedResults.DirectoryName + '\GameUserSettings.ini' | Out-File $fName -Append -encoding "oem"
+    'echo Killing your Windows taskbar until game has closed...' | Out-File $fName -Append -encoding "oem"
+    'echo Launching Valorant in Ultrawide' | Out-File $fName -Append -encoding "oem"
+    '"C:\Riot Games\Riot Client\RiotClientServices.exe" --launch-product=valorant --launch-patchline=live' | Out-File $fName -Append -encoding "oem"
 }
 
 function GetGraphicsInfo5 {
