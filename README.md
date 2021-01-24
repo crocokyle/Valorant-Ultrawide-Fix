@@ -15,7 +15,7 @@
 
 # Troubleshooting
 
-1. Make sure the zip was extracted to its own folder before running `setup.bat`
+1. Make sure the zip was extracted to its own folder before running `install.bat`
 
 2. Check your log files. Open the folder created by the script in `Documents\ValorantUltrawideHack`
     - `install_log.log`
