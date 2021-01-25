@@ -10,9 +10,10 @@
     
 4. Launch the game in ultrawide by running the pink desktop shortcut labeled `Valorant Ultrawide Launcher`
 
-
+5. To uninstall Valorant-Ultrawide-Fix, `uninstall.bat` should have been generated into your extracted folder. Run this to remove all changes.
 <hr />
-
+Disclaimer: This script runs Valorant in windowed mode. It should still appear exactly as if it is fullscreen. Running in windowed mode does decrease your performance slightly because it is rendering your desktop simultaneously. Rendering a larger resolution also reduces performance so you may notice a lower frame rate.
+<hr />
 
 # Troubleshooting
 
@@ -23,6 +24,8 @@
     - `SysSetup_log.log`
     - `ValorantLauncher_log.log`
     
-3. If these logs do not provide you with enough information to solve your issue, please [create a new issue here.](https://github.com/crocokyle/Valorant-Ultrawide-Fix/issues)
+3. [Take a look at the known issues here.](https://github.com/crocokyle/Valorant-Ultrawide-Fix/issues)
+    
+4. If the logs and other issues do not provide you with enough information to solve your issue, please [create a new issue here.](https://github.com/crocokyle/Valorant-Ultrawide-Fix/issues)
     - Make sure you include **all three log files** when submitting
     - Be as specific as possible when explaining the issue. 
