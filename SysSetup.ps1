@@ -11,6 +11,12 @@ $SrcPath = $ScriptDir + '\GameUserSettingsSrc.ini'
 $TargetPath = $TokenizedResults.DirectoryName + '\GameUserSettingsSrc.ini'
 $ExistingSettings = $TokenizedResults.DirectoryName + '\GameUserSettings.ini'
 
+# Find Riot installation
+
+$regKey = Get-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Classes\riotclient\DefaultIcon
+$dirtyPath = $regKey.'(default)'
+$riotPath = $dirtyPath.Substring(0, $dirtyPath.Length-2)
+
 # Debugging variables
 Write-Host "SearchDir: " $SearchDir
 Write-Host "TokenizedResults: " $TokenizedResults
@@ -19,6 +25,7 @@ Write-Host "ScriptDir: " $ScriptDir
 Write-Host "SrcPath: " $SrcPath
 Write-Host "TargetPath: " $TargetPath
 Write-Host "ExistingSettings: " $ExistingSettings
+Write-Host "riotPath: " $riotPath
 
 function WriteLauncher {
     $fName = $ScriptDir + '\ValorantLauncher.bat'
@@ -32,7 +39,7 @@ function WriteLauncher {
     'copy ' + $TargetPath + ' ' + $TokenizedResults.DirectoryName + '\GameUserSettings.ini' | Out-File $fName -Append -encoding "oem"
     'echo Killing your Windows taskbar until game has closed...' | Out-File $fName -Append -encoding "oem"
     'echo Launching Valorant in Ultrawide' | Out-File $fName -Append -encoding "oem"
-    'start "" "C:\Riot Games\Riot Client\RiotClientServices.exe" --launch-product=valorant --launch-patchline=live' | Out-File $fName -Append -encoding "oem"
+    'start "" ' + $riotPath + ' --launch-product=valorant --launch-patchline=live' | Out-File $fName -Append -encoding "oem"
 }
 
 function GetGraphicsInfo5 {
