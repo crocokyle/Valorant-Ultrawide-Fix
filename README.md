@@ -12,7 +12,7 @@
 
 5. To uninstall Valorant-Ultrawide-Fix, `uninstall.bat` should have been generated into your extracted folder. Run this to remove all changes.
 <hr />
-*Disclaimer: This script runs Valorant in **windowed mode**. It should still appear exactly as if it is fullscreen. Running in windowed mode does decrease your performance slightly because it is also rendering your Desktop in parallel. Rendering a larger resolution also reduces performance so you may notice a lower frame rate.*
+Disclaimer: This script runs Valorant in windowed mode. It should still appear exactly as if it is fullscreen. Running in windowed mode does decrease your performance slightly because it is also rendering your Desktop in parallel. Rendering a larger resolution also reduces performance so you may notice a lower frame rate.
 <hr />
 
 # Troubleshooting
