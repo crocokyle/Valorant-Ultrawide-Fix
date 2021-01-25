@@ -15,6 +15,7 @@ title Kyle's Valorant Ultrawide Patch Installer
 echo Kyle's Valorant Ultrawide Patch Installer
 echo .
 echo .
+copy launcher.ico "%HOMEPATH%\Documents\ValorantUltrawideHack\launcher.ico"
 echo Launching the big guns! - Getting your system information, graphics settings, and creating your custom Valorant profile...
 Powershell.exe -executionpolicy remotesigned -File SysSetup.ps1
 
@@ -28,6 +29,7 @@ del GameUserSettingsSrc.ini
 del ValorantLauncher.bat
 del "Valorant Ultrawide Launcher.lnk"
 del SysSetup.ps1
+del launcher.ico
 echo .
 echo ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 echo Complete! Please check the log for errors above.

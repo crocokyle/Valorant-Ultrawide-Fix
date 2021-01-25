@@ -3,7 +3,7 @@ Stop-Transcript | out-null
 $ErrorActionPreference = "Continue"
 Start-Transcript -path $env:HOMEPATH\Documents\ValorantUltrawideHack\SysSetup_log.log -append
 
-
+$launcherPath = $env:HOMEPATH + '\Documents\ValorantUltrawideHack\ValorantLauncher.bat'
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 $SearchDir = $env:LOCALAPPDATA + '\VALORANT\Saved\Config'
 $TokenizedResults = gci -Recurse -Filter "GameUserSettings.ini" -File -Path $SearchDir -Force
@@ -28,6 +28,9 @@ Write-Host "ExistingSettings: " $ExistingSettings
 Write-Host "riotPath: " $riotPath
 
 function WriteLauncher {
+    
+    # Generate BAT file
+
     $fName = $ScriptDir + '\ValorantLauncher.bat'
     New-Item $fName
     'del ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
@@ -40,6 +43,15 @@ function WriteLauncher {
     'echo Killing your Windows taskbar until game has closed...' | Out-File $fName -Append -encoding "oem"
     'echo Launching Valorant in Ultrawide' | Out-File $fName -Append -encoding "oem"
     'start "" ' + $riotPath + ' --launch-product=valorant --launch-patchline=live' | Out-File $fName -Append -encoding "oem"
+
+    # Generate shortcut
+
+    $WshShell = New-Object -comObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut($ScriptDir + '\Valorant Ultrawide Launcher.lnk') 
+    $Shortcut.TargetPath = $launcherPath
+    $Shortcut.IconLocation = $env:HOMEPATH + '\Documents\ValorantUltrawideHack\launcher.ico'
+    $Shortcut.Save()
+
 }
 
 function GetGraphicsInfo5 {
