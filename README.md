@@ -1,3 +1,4 @@
+![Screenshot](screenshot.png)
 # Instructions:
 
 1. [Download the latest release here (v1.1)](https://github.com/crocokyle/Valorant-Ultrawide-Fix/releases)
