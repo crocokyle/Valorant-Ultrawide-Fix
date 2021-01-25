@@ -1,4 +1,5 @@
-﻿# Self-elevate the script if required
+﻿
+# Self-elevate the script if required
 if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
  if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
   $CommandLine = "-File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
@@ -20,6 +21,14 @@ $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 $SrcPath = $ScriptDir + '\GameUserSettingsSrc.ini'
 $TargetPath = $TokenizedResults.DirectoryName + '\GameUserSettingsSrc.ini'
 $ExistingSettings = $TokenizedResults.DirectoryName + '\GameUserSettings.ini'
+
+# Debugging variables
+Write-Host "SearchDir: " + $SearchDir
+Write-Host "TokenizedResults: " + $TokenizedResults
+Write-Host "ScriptDir: " + $ScriptDir
+Write-Host "SrcPath: " + $SrcPath
+Write-Host "TargetPath: " + $TargetPath
+Write-Host "ExistingSettings: " + $ExistingSettings
 
 function WriteLauncher {
     $fName = $ScriptDir + '\ValorantLauncher.bat'
