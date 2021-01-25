@@ -66,11 +66,52 @@ function GetGraphicsInfo15 {
     return $last
 }
 
+function FindMonitors {
+
+    Add-Type -AssemblyName System.Windows.Forms
+    $test = [System.Windows.Forms.Screen]::AllScreens
+
+    if ($test.Length -gt 1){
+        $i = 1
+        foreach ($monitor in $test){
+    
+            Write-Host "Multiple monitors found. Please choose the monitor that you play Valorant on."
+            Write-Host " "
+            Write-Host 'Monitor #' $i ': '
+            Write-Host " "
+            Write-Host $monitor.DeviceName
+            Write-Host $monitor.Bounds
+        
+
+            $i += 1
+        }
+        Write-Host " "
+        $num = Read-Host "Please select your monitor #"
+
+        $int = $num -as [int]
+    
+        $ScreenWidth = $test[$int-1].Bounds.Width
+        $ScreenHeight = $test[$int-1].Bounds.Height
+    
+        
+    }
+
+    else{
+
+        $ScreenWidth = $test[0].Bounds.Width
+        $ScreenHeight = $test[0].Bounds.Height
+        
+    }
+
+    return $ScreenHeight, $ScreenWidth
+}
+
+
 function WriteGameSettings {
     $existingSettingsfile = Get-Content $ExistingSettings
     Write-Host "Getting your native monitor resolution..."
-    $ScreenResolution = Get-WmiObject -Class Win32_DesktopMonitor | Select-Object ScreenWidth,ScreenHeight
-    Write-Host "ScreenResolution: " $ScreenResolution
+    $height, $width = FindMonitors
+    Write-Host "ScreenResolution: " $height "x" $width
     Write-Host "Creating your Valorant graphics profile..."
     $SrcIniName = $ScriptDir + '\GameUserSettingsSrc.ini'
     New-Item $SrcIniName
@@ -79,10 +120,10 @@ function WriteGameSettings {
     'bLastConfirmedShouldLetterbox=False' | Out-File $SrcIniName -Append -encoding "UTF8"
     'bUseVSync=False' | Out-File $SrcIniName -Append -encoding "UTF8"
     'bUseDynamicResolution=False' | Out-File $SrcIniName -Append -encoding "UTF8"
-    'ResolutionSizeX=' + $ScreenResolution.ScreenWidth | Out-File $SrcIniName -Append -encoding "UTF8"
-    'ResolutionSizeY=' + $ScreenResolution.ScreenHeight | Out-File $SrcIniName -Append -encoding "UTF8"
-    'LastUserConfirmedResolutionSizeX=' + $ScreenResolution.ScreenWidth | Out-File $SrcIniName -Append -encoding "UTF8"
-    'LastUserConfirmedResolutionSizeY=' + $ScreenResolution.ScreenHeight | Out-File $SrcIniName -Append -encoding "UTF8"
+    'ResolutionSizeX=' + $width | Out-File $SrcIniName -Append -encoding "UTF8"
+    'ResolutionSizeY=' + $height | Out-File $SrcIniName -Append -encoding "UTF8"
+    'LastUserConfirmedResolutionSizeX=' + $width | Out-File $SrcIniName -Append -encoding "UTF8"
+    'LastUserConfirmedResolutionSizeY=' + $height | Out-File $SrcIniName -Append -encoding "UTF8"
     'WindowPosX=0' | Out-File $SrcIniName -Append -encoding "UTF8"
     'WindowPosY=0' | Out-File $SrcIniName -Append -encoding "UTF8"
     'LastConfirmedFullscreenMode=2' | Out-File $SrcIniName -Append -encoding "UTF8"
@@ -90,10 +131,10 @@ function WriteGameSettings {
     'AudioQualityLevel=0' | Out-File $SrcIniName -Append -encoding "UTF8"
     'LastConfirmedAudioQualityLevel=0' | Out-File $SrcIniName -Append -encoding "UTF8"
     $existingSettingsfile | Select-Object -Index 19 | Out-File $SrcIniName -Append -encoding "UTF8"
-    'DesiredScreenWidth=' + $ScreenResolution.ScreenWidth | Out-File $SrcIniName -Append -encoding "UTF8"
-    'DesiredScreenHeight=' + $ScreenResolution.ScreenHeight | Out-File $SrcIniName -Append -encoding "UTF8"
-    'LastUserConfirmedDesiredScreenWidth=' + $ScreenResolution.ScreenWidth | Out-File $SrcIniName -Append -encoding "UTF8"
-    'LastUserConfirmedDesiredScreenHeight=' + $ScreenResolution.ScreenHeight | Out-File $SrcIniName -Append -encoding "UTF8"
+    'DesiredScreenWidth=' + $width | Out-File $SrcIniName -Append -encoding "UTF8"
+    'DesiredScreenHeight=' + $height | Out-File $SrcIniName -Append -encoding "UTF8"
+    'LastUserConfirmedDesiredScreenWidth=' + $width | Out-File $SrcIniName -Append -encoding "UTF8"
+    'LastUserConfirmedDesiredScreenHeight=' + $height | Out-File $SrcIniName -Append -encoding "UTF8"
     $existingSettingsfile | Select-Object -Index 24 | Out-File $SrcIniName -Append -encoding "UTF8"
     $existingSettingsfile | Select-Object -Index 25 | Out-File $SrcIniName -Append -encoding "UTF8"
     $existingSettingsfile | Select-Object -Index 26 | Out-File $SrcIniName -Append -encoding "UTF8"
