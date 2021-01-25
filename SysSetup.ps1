@@ -33,8 +33,8 @@ function WriteLauncher {
 
     $fName = $ScriptDir + '\ValorantLauncher.bat'
     New-Item $fName
-    'del ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
-    'set LOGFILE=ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
+    'del %HOMEPATH%\Documents\ValorantUltrawideHack\ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
+    'set LOGFILE=%HOMEPATH%\Documents\ValorantUltrawideHack\ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
     'call :LOG > %LOGFILE%' | Out-File $fName -Append -encoding "oem"
     'exit /B' | Out-File $fName -Append -encoding "oem"
     ':LOG' | Out-File $fName -Append -encoding "oem"
