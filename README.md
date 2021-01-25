@@ -24,6 +24,8 @@ Disclaimer: This script runs Valorant in windowed mode. It should still appear e
     - `SysSetup_log.log`
     - `ValorantLauncher_log.log`
     
-3. If these logs do not provide you with enough information to solve your issue, please [create a new issue here.](https://github.com/crocokyle/Valorant-Ultrawide-Fix/issues)
+3. [Take a look at the known issues here.](https://github.com/crocokyle/Valorant-Ultrawide-Fix/issues)
+    
+4. If the logs and other issues do not provide you with enough information to solve your issue, please [create a new issue here.](https://github.com/crocokyle/Valorant-Ultrawide-Fix/issues)
     - Make sure you include **all three log files** when submitting
     - Be as specific as possible when explaining the issue. 
