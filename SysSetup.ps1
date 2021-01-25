@@ -44,7 +44,7 @@ function WriteLauncher {
     'copy ' + $TargetPath + ' ' + $TokenizedResults.DirectoryName + '\GameUserSettings.ini' | Out-File $fName -Append -encoding "oem"
     'echo Killing your Windows taskbar until game has closed...' | Out-File $fName -Append -encoding "oem"
     'echo Launching Valorant in Ultrawide' | Out-File $fName -Append -encoding "oem"
-    '"C:\Riot Games\Riot Client\RiotClientServices.exe" --launch-product=valorant --launch-patchline=live' | Out-File $fName -Append -encoding "oem"
+    'start "" "C:\Riot Games\Riot Client\RiotClientServices.exe" --launch-product=valorant --launch-patchline=live' | Out-File $fName -Append -encoding "oem"
 }
 
 function GetGraphicsInfo5 {
