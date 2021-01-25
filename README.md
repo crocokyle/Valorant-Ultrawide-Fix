@@ -10,7 +10,7 @@
     
 4. Launch the game in ultrawide by running the pink desktop shortcut labeled `Valorant Ultrawide Launcher`
 
-
+5. To uninstall Valorant-Ultrawide-Fix, `uninstall.bat` should have been generated into your extracted folder. Run this to remove all changes.
 <hr />
 
 
