@@ -19,7 +19,7 @@ echo Launching the big guns! - Getting your system information, graphics setting
 Powershell.exe -executionpolicy remotesigned -File SysSetup.ps1
 
 echo Moving patch files to install directory...
-copy ValorantLauncher.bat "%HOMEPATH%\Documents\ValorantUltrawideHack\ValorantLauncher.bat
+copy ValorantLauncher.bat "%HOMEPATH%\Documents\ValorantUltrawideHack\ValorantLauncher.bat"
 copy GameUserSettingsSrc.ini "%HOMEPATH%\Documents\ValorantUltrawideHack\GameUserSettingsSrc.ini"
 echo Creating desktop shortcut...
 copy "Valorant Ultrawide Launcher.lnk" "%HOMEPATH%\Desktop\Valorant Ultrawide Launcher.lnk"

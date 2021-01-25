@@ -1,21 +1,10 @@
-﻿$ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
-
-# Self-elevate the script if required
-if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
- if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
-  $CommandLine = "-File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
-  Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList $CommandLine
-  #Exit
- }
-}
-
-$ErrorActionPreference="SilentlyContinue"
+﻿$ErrorActionPreference="SilentlyContinue"
 Stop-Transcript | out-null
 $ErrorActionPreference = "Continue"
 Start-Transcript -path $env:HOMEPATH\Documents\ValorantUltrawideHack\SysSetup_log.log -append
 
 
-
+$ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 $SearchDir = $env:LOCALAPPDATA + '\VALORANT\Saved\Config'
 $TokenizedResults = gci -Recurse -Filter "GameUserSettings.ini" -File -Path $SearchDir -Force
 $SrcPath = $ScriptDir + '\GameUserSettingsSrc.ini'
@@ -34,7 +23,6 @@ Write-Host "ExistingSettings: " $ExistingSettings
 function WriteLauncher {
     $fName = $ScriptDir + '\ValorantLauncher.bat'
     New-Item $fName
-    ' '  | Out-File $fName -Append -encoding "oem"
     'del ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
     'set LOGFILE=ValorantLauncher_log.log' | Out-File $fName -Append -encoding "oem"
     'call :LOG > %LOGFILE%' | Out-File $fName -Append -encoding "oem"
@@ -100,6 +88,18 @@ function WriteGameSettings {
     GetGraphicsInfo15 | Out-File $SrcIniName -Append -encoding "UTF8"
 }
 
+function GenerateUninstaller($appDir) {
+    $u_fName = $ScriptDir + '\uninstall.bat'
+    New-Item $u_fName
+    '@echo off' | Out-File $u_fName -Append -encoding "oem"
+    'rmdir "%HOMEPATH%\Documents\ValorantUltrawideHack" /S /Q' | Out-File $u_fName -Append -encoding "oem"
+    'del "' + $appDir + '\GameUserSettingsSrc.ini"' | Out-File $u_fName -Append -encoding "oem"
+    'del "%HOMEPATH%\Desktop\Valorant Ultrawide Launcher.lnk"' | Out-File $u_fName -Append -encoding "oem"
+    'echo Uninstall complete...Press any key to close.' | Out-File $u_fName -Append -encoding "oem"
+    'pause' | Out-File $u_fName -Append -encoding "oem"
+    'del "' + $ScriptDir + '\uninstall.bat"' | Out-File $u_fName -Append -encoding "oem"
+}
+
 $host.ui.RawUI.WindowTitle = "Kyle's Valorant Ultrawide Patch Installer"
 Write-Host ""
 Write-Host "Kyle's Valorant Ultrawide Patch Installer"
@@ -114,5 +114,7 @@ Write-Host ""
 copy $SrcPath $TargetPath
 Write-Host "Creating your custom Valorant launch script..."
 WriteLauncher
-
+Write-Host "Generating an uninstaller"
+GenerateUninstaller($TokenizedResults.DirectoryName)
 Stop-Transcript
+pause
