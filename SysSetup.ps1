@@ -70,6 +70,7 @@ function WriteGameSettings {
     $existingSettingsfile = Get-Content $ExistingSettings
     Write-Host "Getting your native monitor resolution..."
     $ScreenResolution = Get-WmiObject -Class Win32_DesktopMonitor | Select-Object ScreenWidth,ScreenHeight
+    Write-Host "ScreenResolution: " $ScreenResolution
     Write-Host "Creating your Valorant graphics profile..."
     $SrcIniName = $ScriptDir + '\GameUserSettingsSrc.ini'
     New-Item $SrcIniName
