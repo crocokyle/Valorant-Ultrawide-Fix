@@ -17,7 +17,7 @@ echo .
 echo .
 copy launcher.ico "%HOMEPATH%\Documents\ValorantUltrawideHack\launcher.ico"
 echo Launching the big guns! - Getting your system information, graphics settings, and creating your custom Valorant profile...
-Powershell.exe -executionpolicy remotesigned -File SysSetup.ps1
+Powershell.exe -executionpolicy Unrestricted -File SysSetup.ps1
 
 echo Moving patch files to install directory...
 copy ValorantLauncher.bat "%HOMEPATH%\Documents\ValorantUltrawideHack\ValorantLauncher.bat"
