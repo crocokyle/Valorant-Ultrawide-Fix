@@ -1,7 +1,8 @@
 ![Screenshot](screenshot.png)
 # Instructions:
 
-1. [Download the latest release here (v1.1)](https://github.com/crocokyle/Valorant-Ultrawide-Fix/releases)
+1. [Download the latest stable release here (v1.2)](https://github.com/crocokyle/Valorant-Ultrawide-Fix/releases)
+    - You can download the source above, but it includes some unnecessary files and may be more buggy than the latest stable release.
 
 2. **Extract the entire zip to its own folder.** Do not just run the setup from within the zip file. 
 
